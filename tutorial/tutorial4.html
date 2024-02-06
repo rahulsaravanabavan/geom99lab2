@@ -1,0 +1,67 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ArcGIS Maps SDK for JavaScript Tutorials: Add a point, line, and polygon</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+  <script>
+
+   require([
+   "esri/rest/route",
+   "esri/core/Collection",
+   "esri/rest/support/RouteParameters",
+   "esri/rest/support/Stop"
+ ], function(route, Collection, RouteParameters, Stop) {
+ 
+   // point the URL to a valid routing service
+   const routeUrl =
+     "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
+ 
+   // create a Collection of new Stops
+   const stops = new Collection([
+     new Stop({
+       geometry: { x: -117.59275, y: 34.06200 },
+       name: "Ontario Airport"
+     }),
+     new Stop({
+       geometry: { x: -117.19570, y: 34.05609 },
+       name: "Esri Campus"
+     })
+   ]);
+ 
+   // setup the RouteParameters with API key and Stops
+   const routeParams = new RouteParameters({
+     // An authorization string used to access the routing service
+     apiKey: "AAPK57616c75bec745b981a36a742c56b96dGHe726AnjOQMT-e4PGawNoUXMW-n05b3mU8tE77CzeHIE0WIPNe3pfiOVI7VF04X",
+     stops
+   });
+ 
+   // solve the route with the RouteParameters
+   function solveRoute() {
+     route.solve(routeUrl, routeParams).then(showRouteInfo);
+   }
+ 
+   // do something useful with the results
+   // like display them to the console
+   function showRouteInfo(routeSolveResult) {
+     console.log("Show all results: ", routeSolveResult);
+     console.log("Show the route information: ", routeSolveResult.routeResults[0].route);
+   }
+ 
+   solveRoute();
+ });
+</script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
