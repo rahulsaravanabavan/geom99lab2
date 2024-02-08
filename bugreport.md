@@ -8,3 +8,9 @@ Steps for the bug:
   2) The API key doesnt work with the provided JS in the documentation and throws JS error in the console and displays none in the map.
    ![image](https://github.com/rahulsaravanabavan/geom99lab2/assets/142858065/49a00062-3dec-48cd-a9cb-887b124e0f82)
 
+  3) The url for the route tutorial doesnt work and throws that error:
+     https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World
+
+The environments are:
+  1) Google chrome
+  2) Microsoft Edge.
